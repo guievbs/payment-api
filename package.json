@@ -2,7 +2,7 @@
   "name": "payment-api",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "prestart": "npm install",
     "start": "nodemon server.js",
