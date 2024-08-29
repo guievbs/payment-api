@@ -1,17 +1,18 @@
 const express = require("express");
-const router = express.Router();
 const {
-  createAccount,
   getAccounts,
+  createAccount,
   updateAccount,
   deleteAccount,
 } = require("../controllers/accountController");
-const authMiddleware = require("../middleware/authMiddleware");
+const { protect, admin } = require("../middleware/authMiddleware");
+const router = express.Router();
 
-// Rotas de contas
-router.post("/", authMiddleware, createAccount);
-router.get("/", authMiddleware, getAccounts);
-router.put("/:id", authMiddleware, updateAccount);
-router.delete("/:id", authMiddleware, deleteAccount);
+router.route("/").get(protect, getAccounts).post(protect, admin, createAccount);
+
+router
+  .route("/:id")
+  .put(protect, admin, updateAccount)
+  .delete(protect, admin, deleteAccount);
 
 module.exports = router;
