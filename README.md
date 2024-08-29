@@ -14,33 +14,40 @@ Uma API de pagamento online que permite o gerenciamento de usuários, transaçõ
 
 ```plaintext
 /payment-api
-  ├── /config
-  │   └── db.js
-  ├── /controllers
-  │   ├── accountController.js
-  │   ├── categoryController.js
-  │   ├── transactionController.js
-  │   └── userController.js
-  ├── /middleware
-  │   └── authMiddleware.js
-  ├── /models
-  │   ├── Account.js
-  │   ├── Category.js
-  │   ├── Transaction.js
-  │   └── User.js
-  ├── /routes
-  │   ├── accountRoutes.js
-  │   ├── categoryRoutes.js
-  │   ├── transactionRoutes.js
-  │   ├── userRoutes.js
-  │   └── installRoutes.js
-  ├── /swagger
-  │   └── swagger.json
-  ├── .env
+  ├── /src
+  │   ├── /config
+  │   │   └── db.js
+  │   ├── /controllers
+  │   │   ├── accountController.js
+  │   │   ├── categoryController.js
+  │   │   ├── transactionController.js
+  │   │   └── userController.js
+  │   ├── /middleware
+  │   │   └── authMiddleware.js
+  │   ├── /models
+  │   │   ├── Account.js
+  │   │   ├── Category.js
+  │   │   ├── Transaction.js
+  │   │   └── User.js
+  │   ├── /routes
+  │   │   ├── accountRoutes.js
+  │   │   ├── categoryRoutes.js
+  │   │   ├── transactionRoutes.js
+  │   │   ├── userRoutes.js
+  │   │   └── installRoutes.js
+  │   ├── /swagger
+  │   │   └── swagger.json
+  │   └── test.js
+  │   └── app.js
   ├── server.js
+  ├── package-lock.json
   ├── package.json
-  ├── README.md
-  └── test.js
+  ├── .env
+  ├── LICENSE
+  ├── .gitattributes
+  ├── .gitignore
+  ├── package.json
+  └── README.md
 ```
 
 ## Configuração do Ambiente
