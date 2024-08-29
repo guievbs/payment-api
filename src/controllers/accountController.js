@@ -37,3 +37,18 @@ exports.updateAccount = async (req, res) => {
     res.status(500).json({ msg: "Erro ao atualizar conta", error });
   }
 };
+
+exports.deleteAccount = async (req, res) => {
+  try {
+    const account = await Account.findById(req.params.id);
+    if (!account) return res.status(404).json({ msg: "Conta não encontrada" });
+
+    if (account.user.toString() !== req.user.id)
+      return res.status(403).json({ msg: "Acesso negado" });
+
+    await account.remove();
+    res.json({ msg: "Conta deletada com sucesso" });
+  } catch (error) {
+    res.status(500).json({ msg: "Erro ao deletar conta", error });
+  }
+};
