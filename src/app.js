@@ -2,11 +2,13 @@ const express = require("express");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
+const transactionRoutes = require("./routes/transactionRoutes");
+const accountRoutes = require("./routes/accountRoutes");
+const categoryRoutes = require("./routes/categoryRoutes");
 const swaggerUi = require("swagger-ui-express");
-const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerJsDoc = require("swagger-jsdoc");
 
 dotenv.config();
-
 connectDB();
 
 const app = express();
@@ -14,44 +16,32 @@ const app = express();
 // Middleware para parsing de JSON
 app.use(express.json());
 
-// Configurações do Swagger
+// Configuração do Swagger
 const swaggerOptions = {
-  definition: {
+  swaggerDefinition: {
     openapi: "3.0.0",
     info: {
       title: "Payment API",
       version: "1.0.0",
-      description: "API de pagamento online",
+      description:
+        "API para gerenciar contas, categorias, transações e usuários em um sistema de pagamento online.",
     },
     servers: [
       {
-        url: "http://localhost:3000",
-      },
-    ],
-    components: {
-      securitySchemes: {
-        bearerAuth: {
-          type: "http",
-          scheme: "bearer",
-          bearerFormat: "JWT",
-        },
-      },
-    },
-    security: [
-      {
-        bearerAuth: [],
+        url: "http://localhost:5000",
       },
     ],
   },
-  apis: ["./routes/*.js"], // Caminho para os arquivos de rotas onde as anotações Swagger estão localizadas
+  apis: ["./routes/*.js"], // Caminho para os arquivos de rotas para documentação automática
 };
 
-const swaggerDocs = swaggerJsdoc(swaggerOptions);
-
-// Rota GET /docs para servir a documentação Swagger
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-// Rotas de usuário
+// Rotas da API
 app.use("/api/users", userRoutes);
+app.use("/api/transactions", transactionRoutes);
+app.use("/api/accounts", accountRoutes);
+app.use("/api/categories", categoryRoutes);
 
 module.exports = app;
