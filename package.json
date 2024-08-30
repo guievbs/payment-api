@@ -7,18 +7,21 @@
     "prestart": "npm install",
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/api-routes.test.js"
   },
   "keywords": [],
   "author": "Guilherme Sebastião",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chai": "^5.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.5.4",
+    "supertest": "^7.0.0",
     "swagger-jsdoc": "^6.2.8",
+    "swagger-test-templates": "^1.6.0",
     "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
